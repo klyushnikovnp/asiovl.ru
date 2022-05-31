@@ -21,11 +21,13 @@
         "drupal/core-project-message": "^9.3",
         "drupal/core-recommended": "^9.3",
         "drupal/devel": "^4.1",
+        "drupal/devel_kint_extras": "^1.0",
         "drupal/easy_breadcrumb": "^2.0",
         "drupal/easy_install": "^10.5",
         "drupal/field_group": "^3.2",
         "drupal/paragraphs": "^1.14",
-        "drupal/pathauto": "^1.10"
+        "drupal/pathauto": "^1.10",
+        "drush/drush": "^11.0"
     },
     "conflict": {
         "drupal/drupal": "*"

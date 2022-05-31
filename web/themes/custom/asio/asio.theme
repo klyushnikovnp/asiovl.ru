@@ -1,0 +1,11 @@
+<?php
+
+/*
+*
+* @Вывод переменных конфигурации в блоке topContacts
+* @name -> основной телефон сайта
+* @slogan -> дополнительный телефон сайта
+*/
+function asio_preprocess_page(&$variables) {
+	kint($variables);
+}	
