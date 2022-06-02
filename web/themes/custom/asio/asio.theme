@@ -7,5 +7,7 @@
 * @slogan -> дополнительный телефон сайта
 */
 function asio_preprocess_page(&$variables) {
-	kint($variables);
+	//kint($variables);
+	//ksm($variables);
 }	
+  
