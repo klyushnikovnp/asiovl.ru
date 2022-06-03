@@ -1,0 +1,14 @@
+{% import _self as menus %}
+
+{{ menus.menu_links(items, attributes, 0) }}
+
+{% macro menu_links(items, attributes, menu_level) %}
+  {% import _self as menus %}
+      <ul class="nav">
+    {% for item in items %}
+      <li class="nav-item">
+        {{ link(item.title, item.url, item.attributes.addClass('nav-link text-dark')) }}
+      </li>
+    {% endfor %}
+    </ul>
+{% endmacro %}

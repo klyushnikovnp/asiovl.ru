@@ -1,13 +1,83 @@
 <?php
 
+use Drupal\Core\Form\FormStateInterface;
+
+
+
+
+/**
+ * Implements hook_form_system_theme_settings_alter().
+ */
+function asio_form_system_theme_settings_alter(&$form, $form_state) {
+  $form['asio_settings']['contacts'] = [
+    '#type' => 'details',
+    '#title' => t('Contacts'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+  ];
+  $form['asio_settings']['contacts']['name'] = [
+    '#type' => 'textfield',
+    '#title' => t('Название компании:'),
+    '#default_value' => theme_get_setting('name'),
+  ];  
+  $form['asio_settings']['contacts']['address'] = [
+    '#type' => 'textfield',
+    '#title' => t('Адрес:'),
+    '#default_value' => theme_get_setting('address'),
+  ];	  
+  $form['asio_settings']['contacts']['phone'] = [
+    '#type' => 'textfield',
+    '#title' => t('Основной номер телефона:'),
+    '#default_value' => theme_get_setting('phone'),
+  ];
+  $form['asio_settings']['contacts']['email'] = [
+    '#type' => 'textfield',
+    '#title' => t('E-mail:'),
+    '#default_value' => theme_get_setting('email'),
+  ];	
+  $form['asio_settings']['contacts']['time_work'] = [
+    '#type' => 'textfield',
+    '#title' => t('Время работы:'),
+    '#default_value' => theme_get_setting('time_work'),
+  ];	  
+  $form['asio_settings']['contacts']['map'] = [
+    '#type' => 'textfield',
+    '#title' => t('Координаты на карте Яндекс:'),
+    '#default_value' => theme_get_setting('map'),
+  ];	   
+
+}	
+
 /*
 *
-* @Вывод переменных конфигурации в блоке topContacts
-* @name -> основной телефон сайта
-* @slogan -> дополнительный телефон сайта
+* Вывод в шаблон block--system-branding-block.html.twig
+* @name -> название сайта
 */
-function asio_preprocess_page(&$variables) {
-	//kint($variables);
-	//ksm($variables);
+  
+function asio_preprocess_block__system_branding_block(&$variables) {
+	$variables['name_site'] = theme_get_setting('name');
 }	
+
+/*
+*
+* Вывод в шаблон block--address-block.html.twig
+* @address -> адрес компании
+* @phone -> Основной номер телефона
+* @time -> Время работы
+*/
+function asio_preprocess_block__address_block(&$variables) {
+	$variables['address'] = theme_get_setting('address');
+	$variables['phone'] = theme_get_setting('phone');
+	$variables['time'] = theme_get_setting('time_work');
+}	
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ * создание suggestions form--search-block-form.html.twig
+ */
+function asio_theme_suggestions_form_alter(&$suggestions, $variables) {
+	if($variables['element']['#form_id'] == 'search_block_form'){		
+		$suggestions[] = 'form__' . $variables['element']['#theme'][0]; // Machine name of form.
+	}	
+}
   

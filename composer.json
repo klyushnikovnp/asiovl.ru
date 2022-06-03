@@ -28,6 +28,7 @@
         "drupal/field_group": "^3.2",
         "drupal/paragraphs": "^1.14",
         "drupal/pathauto": "^1.10",
+        "drupal/taxonomy_menu": "^3.5",
         "drush/drush": "^11.0"
     },
     "conflict": {

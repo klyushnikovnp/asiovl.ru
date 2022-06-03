@@ -9,6 +9,8 @@ libraries:
 base theme: stable9
 
 regions:
+  top_menu: topMenu
+  top_line: topLine
   header: Header
   content: Content
   left_sidebar: 'Left Sidebar'
