@@ -16,9 +16,13 @@ body{font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
 .p48{font-size: 48px;}
 .p200{font-size: 200px;}
 .bold{font-weight: 700;}
+.bg-main{background: #1c94c4;}
 
 /*Header*/
 .top-menu{background: #a7e2f9;}
+.dropdown-item .nav-link{color: gray!important;}
+.dropdown-item.active, .dropdown-item:active{background: #1c94c4;}
+.dropdown-item.active a, .dropdown-item:active a{color: #fff!important;}
 
 
 /*bunner*/

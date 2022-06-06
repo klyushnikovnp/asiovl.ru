@@ -81,3 +81,10 @@ function asio_theme_suggestions_form_alter(&$suggestions, $variables) {
 	}	
 }
   
+/*
+*
+* @Замена в крошках имени 'Home' на 'Главная'
+*/
+function asio_preprocess_breadcrumb(&$variables) {
+	$variables['breadcrumb'][0]['text'] = "Главная";
+}	  

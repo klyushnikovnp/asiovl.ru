@@ -1,9 +1,10 @@
 (function ($) {
 	
 	//@implement top-menu for bootstrap 4
-	$("ul.nav>li>a").removeClass("nav-item");
-	$("ul.nav>li>a.is-active").parent().addClass('active');
-	$("ul.nav>li>a.is-active").removeClass('is-active');
+	$("ul.navbar-nav>li>a").removeClass("nav-item");
+	$("ul.navbar-nav>li>a.is-active").parent().addClass('active');
+	$("ul.navbar-nav>li>a.is-active").removeClass('is-active');
+
 	
 	//@dropdown menu
 	$("ul.dropdown-menu").parent("li").addClass("dropdown");
@@ -16,11 +17,17 @@
 	$("ul.dropdown-menu>li").addClass("dropdown-item");
 	$("ul.dropdown-menu>li").removeClass("nav-item");
 	
+	$("ul.dropdown-menu>li>a").removeClass("nav-item");
+	$("ul.dropdown-menu>li>a.is-active").parent().addClass('active');
+	$("ul.dropdown-menu>li>a.is-active").removeClass('is-active');	
+	$("ul.dropdown-menu>li.active").parent().addClass('active');
+	$("ul.active").parent().addClass('active');
+	
 	$(window).scroll(function(){
 		if ($(window).scrollTop() > 145){
-			$('.branding').addClass('position-fixed fx');
+			$('.product-menu').addClass('position-fixed fx');
 		} else {
-			$('.branding').removeClass('position-fixed fx');
+			$('.product-menu').removeClass('position-fixed fx');
 		}
 	});	
 	
