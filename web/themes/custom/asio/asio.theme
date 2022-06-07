@@ -88,3 +88,24 @@ function asio_theme_suggestions_form_alter(&$suggestions, $variables) {
 function asio_preprocess_breadcrumb(&$variables) {
 	$variables['breadcrumb'][0]['text'] = "Главная";
 }	  
+
+
+/*
+* @Функция подключения библиотек js на страницу
+* 
+*/
+function asio_page_attachments_alter(&$head_elements) {
+	if( \Drupal::service('path.matcher')->isFrontPage()){
+		$head_elements['#attached']['library'][] = 'asio/owl';
+	}
+		//$current_path = \Drupal::request()->getRequestUri();
+	//Подключение библиотеки api.yandex.map
+	/*if($current_path == '/contacts'){
+		$head_elements['#attached']['library'][] = 'stavmaster/yandex';
+	}
+	if(	preg_match('/.services./', $current_path) OR
+		preg_match('/.photogallery./', $current_path) OR
+		preg_match('/.node./', $current_path)){
+		$head_elements['#attached']['library'][] = 'stavmaster/fancybox';
+	}*/
+}	

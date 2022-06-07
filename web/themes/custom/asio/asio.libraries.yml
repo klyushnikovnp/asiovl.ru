@@ -7,6 +7,14 @@ bootstrap:
   dependencies:
     - core/jquery
     
+    
+owl:
+  css:
+    theme: 
+      css/owl.carousel.min.css: {}
+  js: 
+    js/owl.carousel.min.js: {}      
+    
 custom: 
   css:
     theme: 
@@ -15,13 +23,6 @@ custom:
     js/full.js: {}
   dependencies: 
     - core/jquery 
-    
-owl:
-  css:
-    theme: 
-      css/owl.carousel.min.css: {}
-  js: 
-    js/owl.carousel.min.js: {}    
     
      
 yandex: 

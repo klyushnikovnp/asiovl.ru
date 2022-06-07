@@ -17,13 +17,17 @@ body{font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
 .p200{font-size: 200px;}
 .bold{font-weight: 700;}
 .bg-main{background: #1c94c4;}
+.bg-second{background: #ebebeb;}
 
 /*Header*/
 .top-menu{background: #a7e2f9;}
 .dropdown-item .nav-link{color: gray!important;}
 .dropdown-item.active, .dropdown-item:active{background: #1c94c4;}
 .dropdown-item.active a, .dropdown-item:active a{color: #fff!important;}
-
+.owl-carousel .owl-item{height: 500px;}
+.owl-nav button{font-size: 50px!important;}
+.owl-nav .owl-prev{margin-right: 2rem;}
+.fx{width: 100%; top: 0; height: 65px;  z-index: 100;}
 
 /*bunner*/
 
