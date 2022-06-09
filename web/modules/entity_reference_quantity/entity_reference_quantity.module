@@ -22,3 +22,15 @@ function entity_reference_quantity_help($route_name, RouteMatchInterface $route_
     default:
   }
 }
+
+/** 
+ * Implements hook_token_info_alter().
+ */
+
+function entity_reference_quantity_token_info_alter(&$info) {
+  $info['tokens']['node-basic_cart_content']['quantity'] = [
+    'name' => t('Basic Cart: Quantity Value'),
+    'description' => t('The Basic Cart quantity value.'),
+  ];
+}
+
