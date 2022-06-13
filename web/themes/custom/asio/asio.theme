@@ -1,12 +1,13 @@
 <?php
 
 use Drupal\Core\Form\FormStateInterface;
-
+use Drupal\taxonomy\Entity\Term;
 
 
 
 /**
  * Implements hook_form_system_theme_settings_alter().
+ * Установка настроек темы
  */
 function asio_form_system_theme_settings_alter(&$form, $form_state) {
   $form['asio_settings']['contacts'] = [
@@ -53,7 +54,6 @@ function asio_form_system_theme_settings_alter(&$form, $form_state) {
 * Вывод в шаблон block--system-branding-block.html.twig
 * @name -> название сайта
 */
-  
 function asio_preprocess_block__system_branding_block(&$variables) {
 	$variables['name_site'] = theme_get_setting('name');
 }	
@@ -95,17 +95,43 @@ function asio_preprocess_breadcrumb(&$variables) {
 * 
 */
 function asio_page_attachments_alter(&$head_elements) {
+	//подключение на главную страницу owl carousel
 	if( \Drupal::service('path.matcher')->isFrontPage()){
 		$head_elements['#attached']['library'][] = 'asio/owl';
 	}
-		//$current_path = \Drupal::request()->getRequestUri();
-	//Подключение библиотеки api.yandex.map
-	/*if($current_path == '/contacts'){
-		$head_elements['#attached']['library'][] = 'stavmaster/yandex';
-	}
-	if(	preg_match('/.services./', $current_path) OR
-		preg_match('/.photogallery./', $current_path) OR
-		preg_match('/.node./', $current_path)){
-		$head_elements['#attached']['library'][] = 'stavmaster/fancybox';
-	}*/
 }	
+
+/*
+*
+* @Создание отдельного suggestions для заголовка на главной странице
+*/
+/*
+function asio_theme_suggestions_views_view_field_alter(array &$suggestions, array $variables, $hook) {
+	if($variables['field']->field == 'field_settings'){
+	 
+	
+	$request = \Drupal::routeMatch()->getRouteObject()->getDefault('view_id');
+	ksm($request); 
+	$suggestions[] = 'views_view_field__field_settings' . '_' .$request;
+	ksm($suggestions);
+	}
+}
+*/
+
+/*
+*
+* Вывод в шаблон views-view-field--field-settings.html.twig
+* нового значения поля {{ fields.field_settings.content }}
+* выводиться только первые 4-е значения характеристик
+*/
+function asio_preprocess_views_view_field__field_settings(&$variables) {
+	if($variables['field']->field == 'field_settings'){
+		//kint($variables['row']->_entity->get('field_settings'));
+		$arr = $variables['row']->_entity->get('field_settings')->getEntity()
+				->get('field_settings')->getValue();
+		for($i=0; $i<4; $i++){
+			$term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($arr[$i]['target_id']);
+			$variables['field_settings'][$i]['title'] = $term->name->value;
+		}
+	}
+}

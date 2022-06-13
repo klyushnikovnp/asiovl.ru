@@ -5,6 +5,11 @@
 	  <h5 class="card-title">{{ fields.title.content }}</h5>
 	  <h6 class="card-subtitle mb-2 text-muted">Серия: {{ fields.field_type.content }}</h6>
 		<p class="card-text">{{ fields.field_settings.content }}</p>
+		<p class="card-text">
+			{%for item in field_settings %}
+				{{ item }}
+			{% endfor %}
+		</p>
 	  </div>
 	  <div class="card-footer">
 		<div class="price">Цена: {{ fields.add_to_cart_price.content }}</div>
