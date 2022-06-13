@@ -130,8 +130,16 @@ function asio_preprocess_views_view_field__field_settings(&$variables) {
 		$arr = $variables['row']->_entity->get('field_settings')->getEntity()
 				->get('field_settings')->getValue();
 		for($i=0; $i<4; $i++){
-			$term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($arr[$i]['target_id']);
+			$term = get_taxonomy_term($arr[$i]['target_id']);
+			$id_point = $term->field_point->getValue();
+			$point = get_taxonomy_term($id_point[0]['target_id']);
 			$variables['field_settings'][$i]['title'] = $term->name->value;
+			$variables['field_settings'][$i]['point'] = $point->name->value;
 		}
 	}
+}
+
+function get_taxonomy_term($id){
+	$term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($id);
+	return $term;
 }
