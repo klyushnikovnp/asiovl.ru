@@ -1,9 +1,9 @@
-<div class="col-lg-4">
+<div class="col-lg-4 mb-4">
 	<div class="card">
 	  {{ fields.field_photo.content }}
 	  <div class="card-body">
 	  <h5 class="card-title">{{ fields.title.content }}</h5>
-	  <h6 class="card-subtitle mb-2 text-muted">Серия: {{ fields.field_type.content }}</h6>
+	  <h6 class="card-subtitle mb-2 text-muted">{{ fields.field_sub_header.content }}</h6>
 		<p class="card-text">{{ fields.field_settings.content }}</p>
 		<p class="card-text">
 			{%for item in field_settings %}

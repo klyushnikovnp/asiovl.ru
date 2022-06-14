@@ -124,6 +124,7 @@ function asio_theme_suggestions_views_view_field_alter(array &$suggestions, arra
 * нового значения поля {{ fields.field_settings.content }}
 * выводиться только первые 4-е значения характеристик
 */
+
 function asio_preprocess_views_view_field__field_settings(&$variables) {
 	if($variables['field']->field == 'field_settings'){
 		//kint($variables['row']->_entity->get('field_settings'));
@@ -138,6 +139,7 @@ function asio_preprocess_views_view_field__field_settings(&$variables) {
 		}
 	}
 }
+
 
 function get_taxonomy_term($id){
 	$term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($id);
