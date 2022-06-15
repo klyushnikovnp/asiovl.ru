@@ -11,11 +11,7 @@
       <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
     {% endif %}
     {% for item in items %}
-	{% if in_active_trail %}	
-      <li{{ item.attributes.addClass('nav-item active') }}>
-	{% else %}  
-      <li{{ item.attributes.addClass('nav-item') }}>
-	{% endif %}  
+      <li{{ item.attributes.addClass('nav-item px-2') }}>
         {{ link(item.title, item.url, item.attributes.addClass('nav-link')) }}
         {% if item.below %}
           {{ menus.menu_links(item.below, attributes, menu_level + 1) }}

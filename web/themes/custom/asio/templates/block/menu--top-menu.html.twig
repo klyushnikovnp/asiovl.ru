@@ -6,8 +6,9 @@
   {% import _self as menus %}
       <ul class="nav">
     {% for item in items %}
-      <li class="nav-item">
-        {{ link(item.title, item.url, item.attributes.addClass('nav-link text-dark')) }}
+      <li class="nav-item d-flex align-items-center">
+		<span class="material-icons">fiber_manual_record</span>
+        {{ link(item.title, item.url, item.attributes.addClass('nav-link text-dark p14 medium')) }}
       </li>
     {% endfor %}
     </ul>
