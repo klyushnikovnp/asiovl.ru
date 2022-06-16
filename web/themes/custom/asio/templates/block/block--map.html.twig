@@ -1,0 +1,27 @@
+<div id="map" class="w-100 mb-5"></div>
+<script type="text/javascript">
+    ymaps.ready(init);
+    function init(){ 
+        var myMap = new ymaps.Map("map", {
+            center: [43.154509, 131.918740],
+            zoom: 16
+        });
+		
+		var myPlacemark = new ymaps.GeoObject({
+			geometry: {
+				type: "Point",
+				coordinates: [43.154509, 131.918740],
+			},
+			properties: {
+                hintContent: 'г. Владивосток, ул. Карбышева, дом №4'
+            }
+		});
+		
+		var myPlacemark = new ymaps.Placemark([43.154509, 131.918740], {
+            balloonContentHeader: "ООО АСИО",
+            balloonContentBody: "г. Владивосток, ул. Карбышева, дом №4",
+        });
+		myMap.geoObjects.add(myPlacemark);
+		myMap.behaviors.disable('scrollZoom');
+    }
+</script>

@@ -98,6 +98,7 @@ function asio_page_attachments_alter(&$head_elements) {
 	//подключение на главную страницу owl carousel
 	if( \Drupal::service('path.matcher')->isFrontPage()){
 		$head_elements['#attached']['library'][] = 'asio/owl';
+		$head_elements['#attached']['library'][] = 'asio/yandex';
 	}
 }	
 
@@ -140,8 +141,23 @@ function asio_preprocess_views_view_field__field_settings(&$variables) {
 	}
 }
 
-
+/*
+*
+* Возвращает наименование термина таксономии
+* @id - термина тексономии
+*/
 function get_taxonomy_term($id){
 	$term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($id);
 	return $term;
 }
+
+/*
+function asio_preprocess_views_view_field__add_to_cart(&$variables) {
+	if($variables['field']->field == 'add_to_cart'){
+		$a = $variables['row']->_entity->get('add_to_cart')->getFieldDefinition()->getFieldStorageDefinition()->getPropertyDefinition('value')->setClass('asio');
+		//$variables['attributes']['class'][] = 'card-img-top';
+		//$a->setClass('asio');
+		kint($a);
+	}
+}
+*/

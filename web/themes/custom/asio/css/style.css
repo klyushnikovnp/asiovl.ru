@@ -21,13 +21,15 @@ body{font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: 400;}
 .light{font-weight: 300;} 
 .medium{font-weight: 500;}
 .bg-main{background: #1c94c4;}
+.color-main{color: #1c94c4;}
+.color-grey{color: #686868;}
 .bg-second{background: #ebebeb;}
 
 /*Header*/
 .top-menu{background: #a7e2f9;}
 .top-menu span{font-size: 12px!important; color: #fff!important;}
 .top-menu li:first-child span{display: none;}
-.owl-carousel .owl-item{height: 500px;}
+.catalog-list .owl-carousel .owl-item{height: 500px;}
 .owl-nav button{font-size: 50px!important;}
 .owl-nav .owl-prev{margin-right: 2rem;}
 .fx{width: 100%; top: 0; height: 65px;  z-index: 100;}
@@ -59,12 +61,28 @@ z-index: 100;
 /*Главная страница*/
 .circle{width: fit-content; padding: 2rem 2.2rem;}
 .circle span{ font-size: 50px;}
+.lider-block img{height: 250px; width: auto!important; display: inline!important;}
+.catalog-list img{height: 250px; width: fit-content!important; display: inline!important;}
+.catalog-list a:hover,
+.lider-block a:hover{text-decoration: none;}
+.card-footer{background: none; border-top: none;}
+.clients-block{background: url('/themes/custom/asio/images/bg-cliets.jpg') no-repeat top center;}
+.clients-block-inner{background: rgba(21,55,80, 0.87);}
+.clients-block .owl-carousel .owl-item img{width: 80%; height: auto; display: inline;}
+.clients-block .owl-carousel .owl-item{
+text-align: center; 
+background: #fff; 
+height: 125px; 
+display: flex;
+align-items: center;
+justify-content: center;
+}
 
 /*Footer*/
  
  
 /*map*/
-#map{height: 300px;} 
+#map{height: 500px;} 
 
 .scrollup{
 width:40px;

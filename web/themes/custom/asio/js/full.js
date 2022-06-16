@@ -30,6 +30,9 @@
 			$('.product-menu').removeClass('position-fixed fx');
 		}
 	});	
+
+	$(".basic_cart-get-quantity").addClass('btn btn-primary btn-sm');
+
 	
 	//@mobile menu	
 	$(".link-services").attr("href", "#");	
