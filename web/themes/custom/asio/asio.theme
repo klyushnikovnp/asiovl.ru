@@ -58,6 +58,7 @@ function asio_preprocess_block__system_branding_block(&$variables) {
 	$variables['name_site'] = theme_get_setting('name');
 }	
 
+
 /*
 *
 * Вывод в шаблон block--address-block.html.twig
@@ -70,6 +71,47 @@ function asio_preprocess_block__address_block(&$variables) {
 	$variables['phone'] = theme_get_setting('phone');
 	$variables['time'] = theme_get_setting('time_work');
 }	
+
+/*
+*
+* Вывод в шаблон block--map.html.twig
+* @address -> адрес компании
+* @phone -> Основной номер телефона
+* @map -> Координаты на карте
+*/
+function asio_preprocess_block__map(&$variables) {
+	$variables['address'] = theme_get_setting('address');
+	$variables['phone'] = theme_get_setting('phone');
+	$variables['email'] = theme_get_setting('email');
+	$variables['map'] = theme_get_setting('map'); 
+	$variables['name'] = theme_get_setting('name');
+}	
+
+/*
+*
+* Вывод в шаблон block--copyright.html.twig
+* @address -> адрес компании
+* @phone -> Основной номер телефона
+* @map -> Координаты на карте
+*/
+function asio_preprocess_block__copyright(&$variables) {
+	$variables['name'] = theme_get_setting('name');
+	$variables['year'] = date('Y');
+}	
+
+/*
+*
+* Вывод в шаблон block--phone-bottom.html.twig
+* @address -> адрес компании
+* @phone -> Основной номер телефона
+* @map -> Координаты на карте
+*/
+function asio_preprocess_block__phone_bottom(&$variables) {
+	$variables['phone'] = theme_get_setting('phone');
+	$variables['address'] = theme_get_setting('address');
+}	
+
+
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().

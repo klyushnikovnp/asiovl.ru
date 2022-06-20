@@ -77,8 +77,10 @@ display: flex;
 align-items: center;
 justify-content: center;
 }
+.map-contacts{z-index: 10; top: 15%; left: 8%;}
 
 /*Footer*/
+footer{background: #202020;}
  
  
 /*map*/

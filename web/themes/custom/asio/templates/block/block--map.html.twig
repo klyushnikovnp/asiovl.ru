@@ -1,25 +1,32 @@
-<div id="map" class="w-100 mb-5"></div>
+<div id="map" class="w-100 position-relative">
+	<div class="map-contacts position-absolute shadow-lg bg-white p-5">
+		<h2 class="mb-3">Контакты</h2>
+		<p class="d-flex"><span class="material-icons color-main mr-2">location_on</span> <span>{{ address }}</span></p>
+		<p class="d-flex"><span class="material-icons color-main mr-2">phone_iphone</span> <span>{{ phone }}</span></p>
+		<p class="d-flex"><span class="material-icons color-main mr-2">mail</span> <span>{{ email }}</span></p> 
+	</div>
+</div>
 <script type="text/javascript">
-    ymaps.ready(init);
+    ymaps.ready(init); 
     function init(){ 
         var myMap = new ymaps.Map("map", {
-            center: [43.154509, 131.918740],
+            center: [{{ map }}],
             zoom: 16
         });
 		
 		var myPlacemark = new ymaps.GeoObject({
 			geometry: {
 				type: "Point",
-				coordinates: [43.154509, 131.918740],
+				coordinates: [{{ map }}],
 			},
 			properties: {
-                hintContent: 'г. Владивосток, ул. Карбышева, дом №4'
+                hintContent: '{{ address }}'
             }
 		});
 		
-		var myPlacemark = new ymaps.Placemark([43.154509, 131.918740], {
-            balloonContentHeader: "ООО АСИО",
-            balloonContentBody: "г. Владивосток, ул. Карбышева, дом №4",
+		var myPlacemark = new ymaps.Placemark([{{ map }}], {
+            balloonContentHeader: "{{ name }}",
+            balloonContentBody: "{{ address }}",
         });
 		myMap.geoObjects.add(myPlacemark);
 		myMap.behaviors.disable('scrollZoom');
