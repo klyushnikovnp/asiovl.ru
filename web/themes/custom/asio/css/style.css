@@ -81,6 +81,11 @@ justify-content: center;
 
 /*Footer*/
 footer{background: #202020;}
+
+/*catalog*/
+.catalog img{width: 100%; height: auto;}
+.catalog a{text-decoration: none;}
+.catalog .card:hover{box-shadow: 0 0 10px rgba(0,0,0,0.5); transition: all 0.1s ease 0s;}
  
  
 /*map*/
