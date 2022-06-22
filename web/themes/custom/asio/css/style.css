@@ -29,7 +29,6 @@ body{font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: 400;}
 .top-menu{background: #a7e2f9;}
 .top-menu span{font-size: 12px!important; color: #fff!important;}
 .top-menu li:first-child span{display: none;}
-.catalog-list .owl-carousel .owl-item{height: 500px;}
 .owl-nav button{font-size: 50px!important;}
 .owl-nav .owl-prev{margin-right: 2rem;}
 .fx{width: 100%; top: 0; height: 65px;  z-index: 100;}
@@ -62,9 +61,14 @@ z-index: 100;
 .circle{width: fit-content; padding: 2rem 2.2rem;}
 .circle span{ font-size: 50px;}
 .lider-block img{height: 250px; width: auto!important; display: inline!important;}
-.catalog-list img{height: 250px; width: fit-content!important; display: inline!important;}
-.catalog-list a:hover,
+.catalog-list img{height: 250px; width: fit-content!important; display: inline!important;}*
+.catalog-list-frontpage a:hover,
 .lider-block a:hover{text-decoration: none;}
+.catalog-list-frontpage .card:hover,
+.lider-block .card:hover,
+.catalog-list .card:hover
+{box-shadow: 0 0 10px rgba(0,0,0,0.5); transition: all 0.1s ease 0s;}
+.catalog-list-frontpage .owl-carousel .owl-item{height: 500px; margin-bottom: .5rem;}
 .card-footer{background: none; border-top: none;}
 .clients-block{background: url('/themes/custom/asio/images/bg-cliets.jpg') no-repeat top center;}
 .clients-block-inner{background: rgba(21,55,80, 0.87);}
@@ -73,7 +77,7 @@ z-index: 100;
 text-align: center; 
 background: #fff; 
 height: 125px; 
-display: flex;
+display: flex; 
 align-items: center;
 justify-content: center;
 }
@@ -84,8 +88,11 @@ footer{background: #202020;}
 
 /*catalog*/
 .catalog img{width: 100%; height: auto;}
-.catalog a{text-decoration: none;}
+.catalog a, .catalog-list a{text-decoration: none;}
+.catalog-list a{color: black;}
+.catalog-list a.button{color: white;}
 .catalog .card:hover{box-shadow: 0 0 10px rgba(0,0,0,0.5); transition: all 0.1s ease 0s;}
+
  
  
 /*map*/

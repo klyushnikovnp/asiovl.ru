@@ -4,5 +4,5 @@
     <h2><a href="{{ url }}">{{ name }}</a></h2>
   {% endif %} 
   {{ title_suffix }}
-  {{ content|without('field_cover_catalog') }}
+  {{ content|without('field_cover_catalog', 'description') }}
 </div>
