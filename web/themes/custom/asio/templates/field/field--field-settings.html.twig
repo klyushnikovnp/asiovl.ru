@@ -1,0 +1,14 @@
+  <thead>
+    <tr>
+      <th scope="col">№</th>
+      <th scope="col">Характеристики</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% for item in items %}
+	<tr>
+	  <td scope="row">{{ loop.index }}</td>
+      <td>{{ item.content }}</td>
+	 </tr>
+    {% endfor %}
+  </tbody>    

@@ -1,0 +1,29 @@
+<h1 class="mb-5">{{ content.field_sub_header }} {{ label }}</a></h1>
+<div class="product row">
+	<div class="col-lg-7">
+		<div class="card mt-4">
+		  <div class="card-body">
+			<p class="light color-grey">серия: {{ content.field_type }}</p>
+			{{ content.body }}
+			<h5 class="card-title color-main p32">{{ content.add_to_cart_price }}</h5>
+			<h6 class="card-subtitle mb-2">{{ content.add_to_cart }}</h6>
+			
+		  </div>
+		</div>
+		<div class="w-100 mt-3">
+		<h6>Поделиться:</h6>
+			<script src="https://yastatic.net/share2/share.js"></script>
+			<div class="ya-share2" data-curtain data-shape="round" data-services="messenger,vkontakte,odnoklassniki,telegram,whatsapp"></div>		
+		</div>
+	</div>
+	<div class="col-lg-5">{{ content.field_photo }}</div>
+	<div class="col-12">
+		<h3 class="mb-3">Технические характеристики</h3>
+		<table class="table table-striped table-bordered">
+			{{ content.field_settings }}
+		</table>
+	</div>
+	<div class="col-12">
+		{{ content.comment }}
+	</div>
+</div>

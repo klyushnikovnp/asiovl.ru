@@ -194,12 +194,16 @@ function get_taxonomy_term($id){
 }
 
 /*
-function asio_preprocess_views_view_field__add_to_cart(&$variables) {
-	if($variables['field']->field == 'add_to_cart'){
-		$a = $variables['row']->_entity->get('add_to_cart')->getFieldDefinition()->getFieldStorageDefinition()->getPropertyDefinition('value')->setClass('asio');
-		//$variables['attributes']['class'][] = 'card-img-top';
-		//$a->setClass('asio');
-		kint($a);
-	}
-}
+*
+* Добавляет suggestions на все страницах node--product.html.twig
+* 
 */
+function asio_theme_suggestions_page_title_alter(array &$suggestions, array $variables, $hook) {
+	$node = \Drupal::routeMatch()->getParameters()->get('node');
+	if (!empty($node) && is_object($node)) {
+		if($node->bundle() == 'product'){
+			$suggestions[] = $hook ."_". $node->bundle();
+		}
+	}
+	//kint($suggestions);
+}	
