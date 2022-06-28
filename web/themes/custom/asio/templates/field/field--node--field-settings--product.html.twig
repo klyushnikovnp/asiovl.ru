@@ -1,0 +1,16 @@
+  <thead>
+    <tr>
+      <th scope="col">№</th>
+      <th scope="col">Наименование</th>
+      <th scope="col">Значение</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% for item in field_product_settings %}
+	<tr>
+	  <td scope="row">{{ loop.index }}</td>
+      <td>{{ item.name }}, {{ item.point }}</td>
+      <td>{{ item.value }}</td>
+	 </tr>
+    {% endfor %}
+  </tbody>    

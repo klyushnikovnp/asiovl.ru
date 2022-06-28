@@ -183,27 +183,120 @@ function asio_preprocess_views_view_field__field_settings(&$variables) {
 	}
 }
 
+function asio_preprocess_field__node__body__product(&$variables) {
+	$entity = $variables['element']['#items']->getEntity();	 
+	$list = $entity->field_settings->getValue();
+	
+	foreach($list as $i=>$item){
+		$variables['product_settings'][$i]['name'] = 
+			get_name_taxonomy_term($list[$i]['target_id'], 'field_name_settings');
+		$variables['product_settings'][$i]['value'] = 
+			get_name_taxonomy_term($list[$i]['target_id'], 'field_value');			
+		$variables['product_settings'][$i]['point'] = 
+			get_name_taxonomy_term($list[$i]['target_id'], 'field_point');				
+	}	
+	//ksm($variables);
+}	
+
+
+/*
+*
+* 
+* @field_name_settings - имя термина
+* @field_point - единицы измерения 
+* @field_value - значение термина 
+*/
+
+
+function asio_preprocess_field__node__field_settings__product(&$variables) {
+	$list = $variables['element']['#items']->getValue();
+
+	foreach($list as $i=>$item){
+		$variables['field_product_settings'][$i]['name'] = 
+			get_name_taxonomy_term($list[$i]['target_id'], 'field_name_settings');
+		$variables['field_product_settings'][$i]['value'] = 
+			get_name_taxonomy_term($list[$i]['target_id'], 'field_value');			
+		$variables['field_product_settings'][$i]['point'] = 
+			get_name_taxonomy_term($list[$i]['target_id'], 'field_point');				
+	}
+}	
+
+
+
+/*
+*
+* Возвращает наименование термина таксономии
+* @id - термина тексономии
+* @parameter - имя поля таксономии
+*/
+function get_name_taxonomy_term($id, $parameter){
+	$term = get_taxonomy_term($id);
+	$id_settings = $term->get($parameter)->getValue();
+	$name_settings = get_taxonomy_term($id_settings[0]['target_id']);
+	return $name_settings->name->value;
+}
+
+
 /*
 *
 * Возвращает наименование термина таксономии
 * @id - термина тексономии
 */
 function get_taxonomy_term($id){
-	$term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($id);
-	return $term;
+	if (!empty($id) && isset($id)){
+		$term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($id);
+		return $term;
+		}
+	else{return NULL;}	
 }
+
 
 /*
 *
-* Добавляет suggestions на все страницах node--product.html.twig
+* Добавляет suggestions на все страницах page--product.html.twig
 * 
 */
-function asio_theme_suggestions_page_title_alter(array &$suggestions, array $variables, $hook) {
-	$node = \Drupal::routeMatch()->getParameters()->get('node');
+function asio_theme_suggestions_page_alter(array &$suggestions, array $variables, $hook) {
+	$node = \Drupal::request()->attributes->get('node');
 	if (!empty($node) && is_object($node)) {
-		if($node->bundle() == 'product'){
-			$suggestions[] = $hook ."_". $node->bundle();
-		}
+		$suggestions[] = $hook ."__". $node->getType();
 	}
-	//kint($suggestions);
-}	
+}	 
+
+
+
+/*
+*
+* Вывод в шаблон views-view-field--field-settings.html.twig
+* нового значения поля {{ fields.field_settings.content }}
+* выводиться только первые 4-е значения характеристик
+*/
+
+function asio_preprocess_field__field_modification(&$variables) {
+	foreach($variables['items'] as $key=>$item){
+		$nid[$key] = $item['content']['#url']->getRouteParameters();
+		}
+	foreach($nid as $key=>$value){
+		$entity[$key] = asio_getEntity($value['node'], 'modification');
+	}
+
+	foreach($entity as $key=>$value){
+		$item = current($value);
+		//ksm($item);
+		$variables['modification'][$key]['nid'] = 	$item->get('nid')->value;
+		$variables['modification'][$key]['title'] = 	$item->get('title')->value;
+		$variables['modification'][$key]['add_to_cart_price'] = 	$item->get('add_to_cart_price')->value;
+	} 
+}
+
+
+function asio_getEntity($nid, $type){
+	$query = \Drupal::entityQuery('node');
+	$query->condition('type', $type);
+	$query->condition('nid', $nid);
+	$query->condition('status', 1);
+	$nids = $query->execute();	
+	
+	$nodes = \Drupal\node\Entity\Node::loadMultiple($nids);	
+	return $nodes;
+}

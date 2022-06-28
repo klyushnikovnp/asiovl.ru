@@ -14,4 +14,5 @@ regions:
   header: Header
   content: Content
   left_sidebar: 'Left Sidebar'
+  left_sidebar_product: 'Left Sidebar Product'
   footer: Footer

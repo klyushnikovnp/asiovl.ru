@@ -1,0 +1,38 @@
+<div class="top-menu">
+	{{ page.top_menu }}
+</div>	
+<div class="top-line">
+	{{ page.top_line }}
+</div>
+<header>
+	{{ page.header }}
+</header>
+<main role="main" class="flex-grow-1">
+	<div class="layout-container container">
+		<div class="row">
+			{% if page.left_sidebar_product %}
+			  <div class="left-sidebar-product col-lg-3 pr-4">
+				{{ page.left_sidebar_product }}
+			  </div>
+			{% endif %}
+			<div class="content col-12 col-lg-{{ (page.left_sidebar_product)? '9':'12' }}">
+			  {{ page.breadcrumb }}
+			  {{ page.content }}
+			</div>
+		</div>
+	</div>
+</main>
+
+<footer class="text-white py-4 p13 mt-5">
+	<div class="container">
+		<div class="row"> 
+			{{ page.footer }}
+		</div>	
+	</div>	
+</footer> 
+
+
+
+
+
+
