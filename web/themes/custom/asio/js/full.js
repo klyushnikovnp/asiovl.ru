@@ -33,7 +33,7 @@
 
 	$(".basic_cart-get-quantity").addClass('btn btn-primary btn-sm');
 	
-	$("#block-asio-page-title>h1").addClass('d-none');
+	/*$("#block-asio-page-title>h1").addClass('d-none');*/
 	$(".sub-menu>ul").addClass('flex-column');
 
 	

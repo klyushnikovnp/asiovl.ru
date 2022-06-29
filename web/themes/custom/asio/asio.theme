@@ -298,5 +298,21 @@ function asio_getEntity($nid, $type){
 	$nids = $query->execute();	
 	
 	$nodes = \Drupal\node\Entity\Node::loadMultiple($nids);	
-	return $nodes;
+	return $nodes; 
 }
+
+
+/*
+*
+* Задание классов для формы подверждения заказа id=node_basic_cart_order_form
+*
+*/
+function asio_form_node_basic_cart_order_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+	$form['basic_cart_message']['widget'][0]['value']['#attributes']['class'][] = 'form-control mb-3';
+	$form['basic_cart_address']['widget'][0]['value']['#attributes']['class'][] = 'form-control mb-3';
+	$form['basic_cart_email']['widget'][0]['value']['#attributes']['class'][] = 'form-control mb-3';
+	$form['basic_cart_phone']['widget'][0]['value']['#attributes']['class'][] = 'form-control mb-3';
+	$form['title']['widget'][0]['value']['#attributes']['class'][] = 'form-control mb-3';
+	$form['title']['widget'][0]['value']['#title'] = t('Имя');
+	$form['#attributes']['class'][] = "col-lg-8";
+}	
