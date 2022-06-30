@@ -169,16 +169,21 @@ function asio_theme_suggestions_views_view_field_alter(array &$suggestions, arra
 */
 
 function asio_preprocess_views_view_field__field_settings(&$variables) {
-	if($variables['field']->field == 'field_settings'){
+	if($variables['field']->field == 'field_settings' && $variables['row']->_entity->getType() == 'product'){
 		//kint($variables['row']->_entity->get('field_settings'));
 		$arr = $variables['row']->_entity->get('field_settings')->getEntity()
 				->get('field_settings')->getValue();
-		for($i=0; $i<4; $i++){
-			$term = get_taxonomy_term($arr[$i]['target_id']);
-			$id_point = $term->field_point->getValue();
-			$point = get_taxonomy_term($id_point[0]['target_id']);
-			$variables['field_settings'][$i]['title'] = $term->name->value;
-			$variables['field_settings'][$i]['point'] = $point->name->value;
+		$i=0;
+		foreach($arr as $value){
+			if($i<4){
+				$term = get_taxonomy_term($arr[$i]['target_id']);
+				$id_point = $term->field_point->getValue();
+				$point = get_taxonomy_term($id_point[0]['target_id']);
+				$variables['field_settings'][$i]['title'] = $term->name->value;
+				$variables['field_settings'][$i]['point'] = $point->name->value;
+			}
+			else break;	
+			$i++; 
 		}
 	}
 }

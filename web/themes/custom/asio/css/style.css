@@ -116,6 +116,12 @@ padding-right: 2rem;
 }
 .basic_cart-circle-32-26{width: 18px; height: 18px; font-size: 14px; font-weight: 700;}  
 #node-basic-cart-order-form .form-item label{margin-bottom: 0;}
+
+/*Product*/
+.addtocart-link-class{margin: 0;}
+.modification .line{height: 65px;}
+.modification .basic_cart-get-quantity{font-size: 12px;}
+
  
  
 /*map*/
