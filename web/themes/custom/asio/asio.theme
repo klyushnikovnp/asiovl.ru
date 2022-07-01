@@ -2,6 +2,8 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\media\Entity\Media;
+use Drupal\file\Entity\File;
 
 
 
@@ -112,6 +114,22 @@ function asio_preprocess_block__phone_bottom(&$variables) {
 }	
 
 
+/*
+*
+* Вывод в шаблон block--contacts.html.twig
+* @address -> адрес компании
+* @phone -> Основной номер телефона
+* @map -> Координаты на карте
+*/
+function asio_preprocess_block__contacts(&$variables) {
+	$variables['address'] = theme_get_setting('address');
+	$variables['phone'] = theme_get_setting('phone');
+	$variables['email'] = theme_get_setting('email');
+	$variables['map'] = theme_get_setting('map'); 
+	$variables['name'] = theme_get_setting('name');
+}	
+
+
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
@@ -137,6 +155,11 @@ function asio_preprocess_breadcrumb(&$variables) {
 * 
 */
 function asio_page_attachments_alter(&$head_elements) {
+
+	$alias = \Drupal::request()->getRequestUri();
+	if($alias == '/contacts'){
+		$head_elements['#attached']['library'][] = 'asio/yandex';
+	}
 	//подключение на главную страницу owl carousel
 	if( \Drupal::service('path.matcher')->isFrontPage()){
 		$head_elements['#attached']['library'][] = 'asio/owl';
@@ -144,22 +167,6 @@ function asio_page_attachments_alter(&$head_elements) {
 	}
 }	
 
-/*
-*
-* @Создание отдельного suggestions для заголовка на главной странице
-*/
-/*
-function asio_theme_suggestions_views_view_field_alter(array &$suggestions, array $variables, $hook) {
-	if($variables['field']->field == 'field_settings'){
-	 
-	
-	$request = \Drupal::routeMatch()->getRouteObject()->getDefault('view_id');
-	ksm($request); 
-	$suggestions[] = 'views_view_field__field_settings' . '_' .$request;
-	ksm($suggestions);
-	}
-}
-*/
 
 /*
 *
@@ -321,3 +328,41 @@ function asio_form_node_basic_cart_order_form_alter(&$form, \Drupal\Core\Form\Fo
 	$form['title']['widget'][0]['value']['#title'] = t('Имя');
 	$form['#attributes']['class'][] = "col-lg-8";
 }	
+
+
+function asio_preprocess_views_view_field__field_link(&$variables) {
+	if($variables['field']->field == 'field_link'){
+		$arr = $variables['row']->_entity->get('field_link')->getValue();
+
+		$media = Media::load($arr[0]['target_id']);
+		$type = $media->bundle->getValue();
+		if($type[0]['target_id'] == 'document'){
+			$fid = $media->field_media_document->target_id;
+			$file = File::load($fid);
+			$url = $file->getFileUri(); 
+			$img = \Drupal::service('file_system')->realpath($url);
+			$path_file = substr($img, 33);
+			}
+		else{$path_file = $media->field_media_oembed_video->value;}
+		$variables['path_file'][$arr[0]['target_id']]['path'] = $path_file;
+		//kint($path_file);
+	}
+}	
+
+/**
+ * Get IMG
+ * $mid - input $id image
+ * $return url image
+*/  
+/*
+  private function getIMG($mid){
+	  
+		$media = Media::load($mid);
+		$fid = $media->field_media_image_1->target_id;
+		$file = File::load($fid);
+		$url = $file->getFileUri();
+		$img = \Drupal::service('file_system')->realpath($url);
+		$var = substr($img, 44);
+
+	return $var;   
+	}  */

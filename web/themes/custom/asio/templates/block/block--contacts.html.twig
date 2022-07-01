@@ -1,0 +1,37 @@
+<div class="contacts">
+<h3 class="mb-4">{{ name }}</h3>
+<ul class="list-unstyled p20">
+	<li class="mb-4"><span class="bold">Адрес:</span> {{ address }}</li>
+	<li class="mb-4"><span class="bold">Email:</span> <a href="mailto:{{ email }}" class="text-dark">{{ email }}</a></li>
+	<li class="mb-4"><span class="bold">Телефон:</span> <a href="tel:{{ phone }}" type="button" class="btn btn-outline-primary">{{ phone }}</a></li>
+</ul> 
+<div id="map" class="w-100 mt-5"></div> 
+
+<script type="text/javascript">
+    ymaps.ready(init); 
+    function init(){ 
+        var myMap = new ymaps.Map("map", {
+            center: [{{ map }}],
+            zoom: 16
+        });
+		
+		var myPlacemark = new ymaps.GeoObject({
+			geometry: {
+				type: "Point",
+				coordinates: [{{ map }}],
+			},
+			properties: {
+                hintContent: '{{ address }}'
+            }
+		});
+		
+		var myPlacemark = new ymaps.Placemark([{{ map }}], {
+            balloonContentHeader: "{{ name }}",
+            balloonContentBody: "{{ address }}",
+        });
+		myMap.geoObjects.add(myPlacemark);
+		myMap.behaviors.disable('scrollZoom');
+    }
+</script>
+
+</div>

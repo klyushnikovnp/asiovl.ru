@@ -122,8 +122,17 @@ padding-right: 2rem;
 .modification .line{height: 65px;}
 .modification .basic_cart-get-quantity{font-size: 12px;}
 
+/*Instruction*/
+.instruction .card-footer{
+padding: 0.25rem 1.25rem!important;
+background-color: rgba(0,0,0,.03)!important;
+border-top: 1px solid rgba(0,0,0,.125)!important;	
+}
+.instruction .card-body{padding: 0.5rem 1.25rem!important;}
+.instruction .card:hover{box-shadow: 0 0 10px rgba(0,0,0,0.5); transition: all 0.1s ease 0s;}
+
  
- 
+  
 /*map*/
 #map{height: 500px;} 
 
