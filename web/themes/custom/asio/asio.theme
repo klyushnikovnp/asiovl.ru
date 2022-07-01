@@ -160,6 +160,9 @@ function asio_page_attachments_alter(&$head_elements) {
 	if($alias == '/contacts'){
 		$head_elements['#attached']['library'][] = 'asio/yandex';
 	}
+	if($alias == '/works'){
+		$head_elements['#attached']['library'][] = 'asio/fancybox';
+	}
 	//подключение на главную страницу owl carousel
 	if( \Drupal::service('path.matcher')->isFrontPage()){
 		$head_elements['#attached']['library'][] = 'asio/owl';
@@ -330,6 +333,12 @@ function asio_form_node_basic_cart_order_form_alter(&$form, \Drupal\Core\Form\Fo
 }	
 
 
+/*
+*
+* Функция выдает url по ID в шалбон views-view-field--field-link.html.twig
+*
+*/
+
 function asio_preprocess_views_view_field__field_link(&$variables) {
 	if($variables['field']->field == 'field_link'){
 		$arr = $variables['row']->_entity->get('field_link')->getValue();
@@ -349,20 +358,12 @@ function asio_preprocess_views_view_field__field_link(&$variables) {
 	}
 }	
 
-/**
- * Get IMG
- * $mid - input $id image
- * $return url image
-*/  
 /*
-  private function getIMG($mid){
-	  
-		$media = Media::load($mid);
-		$fid = $media->field_media_image_1->target_id;
-		$file = File::load($fid);
-		$url = $file->getFileUri();
-		$img = \Drupal::service('file_system')->realpath($url);
-		$var = substr($img, 44);
-
-	return $var;   
-	}  */
+*
+* @Дабавление класса fancybox для фото, страницы "Наши работы"
+*/
+function asio_preprocess_image(&$variables) {
+	if($variables['style_name'] == 'gallery'){
+		$variables['attributes']['class'][] = 'fancybox';	  
+	}	
+}	

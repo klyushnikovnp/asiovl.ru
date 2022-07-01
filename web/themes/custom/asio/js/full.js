@@ -23,6 +23,9 @@
 	$("ul.dropdown-menu>li.active").parent().addClass('active');
 	$("ul.active").parent().addClass('active');
 	
+	//@fancybox
+	$("img.fancybox").parent().attr("data-fancybox", "gallery");
+	
 	$(window).scroll(function(){
 		if ($(window).scrollTop() > 145){
 			$('.product-menu').addClass('position-fixed fx');
