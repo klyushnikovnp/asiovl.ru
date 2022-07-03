@@ -1,0 +1,6 @@
+{%- for item in filter -%}
+<div class="form-group">
+	<input type="checkbox" class="form-check-input" id="exampleCheck_{{ item.id }}" name="checkboxes" value="{{ item.id }}">
+	<label class="form-check-label" for="exampleCheck_{{ item.id }}">{{ item.name -}} {{ " " }} {{ item.value -}}</label>
+</div>	
+{%- endfor -%}

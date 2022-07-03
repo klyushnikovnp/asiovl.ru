@@ -7,6 +7,7 @@ use Drupal\file\Entity\File;
 
 
 
+
 /**
  * Implements hook_form_system_theme_settings_alter().
  * Установка настроек темы
@@ -356,7 +357,8 @@ function asio_preprocess_views_view_field__field_link(&$variables) {
 		$variables['path_file'][$arr[0]['target_id']]['path'] = $path_file;
 		//kint($path_file);
 	}
-}	
+}
+	
 
 /*
 *
@@ -367,3 +369,34 @@ function asio_preprocess_image(&$variables) {
 		$variables['attributes']['class'][] = 'fancybox';	  
 	}	
 }	
+
+function asio_theme_suggestions_views_view_field_alter(array &$suggestions, array $variables, $hook) {
+		$view = $variables['view'];
+		$name_view = $view->id();
+		if (!empty($view) && isset($view)) {
+			$suggestions[] = "views_view_field__". $name_view;
+		} 
+
+		//kint($name_view); 
+}
+
+function asio_preprocess_views_view_field__name(&$variables) {
+
+	$id = $variables['row']->_entity->tid->value;
+	$id_name = $variables['row']->_entity->field_name_settings->target_id;
+	$id_value = $variables['row']->_entity->field_value->target_id;
+	$name = get_taxonomy_term_by_filter($id_name);
+	$value = get_taxonomy_term_by_filter($id_value);
+	
+	$variables['filter'][$id]['id'] = $id;
+	$variables['filter'][$id]['name'] = $name;
+	$variables['filter'][$id]['value'] = $value;
+
+} 
+
+function get_taxonomy_term_by_filter($id){
+	$term = get_taxonomy_term($id);
+	$name = $term->name->value;
+	return $name;
+}
+

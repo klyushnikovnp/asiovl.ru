@@ -68,6 +68,15 @@
 		return false;
 	});		
  
+ 
+   $('button.filter').on('click', function(){
+    var values = [];
+    $('[name="checkboxes"]:checked').each(function(){
+      values.push($(this).val());
+    }); 
+    
+    alert(values.join(', '));
+  });
 
  
  

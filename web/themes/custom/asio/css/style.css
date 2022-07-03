@@ -117,6 +117,7 @@ padding-right: 2rem;
 }
 .basic_cart-circle-32-26{width: 18px; height: 18px; font-size: 14px; font-weight: 700;}  
 #node-basic-cart-order-form .form-item label{margin-bottom: 0;}
+#node-basic-cart-order-form input{text-align: left;}
 
 /*Product*/
 .addtocart-link-class{margin: 0;}
@@ -132,7 +133,9 @@ border-top: 1px solid rgba(0,0,0,.125)!important;
 .instruction .card-body{padding: 0.5rem 1.25rem!important;}
 .instruction .card:hover{box-shadow: 0 0 10px rgba(0,0,0,0.5); transition: all 0.1s ease 0s;}
 
- 
+ /*filter*/
+.filter .form-group{margin:0 0 .5rem 1.3rem;}
+#block-filter-block{margin-top: 6rem;}
   
 /*map*/
 #map{height: 500px;} 
