@@ -1,3 +1,9 @@
 {%- for item in field_settings -%}
 	{{ item.title -}} {{ " " }} {{ item.point -}}<br />
 {%- endfor -%}
+
+<div name="id-settings" class="id-settings d-none" data-id-settings="
+{%- for item in id_settings -%}
+	{{ item.target_id }}{{", "}}
+{%- endfor -%}	
+"></div>  

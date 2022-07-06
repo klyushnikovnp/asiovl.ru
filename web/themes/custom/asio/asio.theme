@@ -184,6 +184,7 @@ function asio_preprocess_views_view_field__field_settings(&$variables) {
 		//kint($variables['row']->_entity->get('field_settings'));
 		$arr = $variables['row']->_entity->get('field_settings')->getEntity()
 				->get('field_settings')->getValue();
+		$variables['id_settings'] = $arr;		
 		$i=0;
 		foreach($arr as $value){
 			if($i<4){
@@ -280,6 +281,18 @@ function asio_theme_suggestions_page_alter(array &$suggestions, array $variables
 }	 
 
 
+/*
+*
+* Добавляет suggestions на все страницах page-title--product.html.twig
+* @ Убирает page_title с продуктовых страниц
+*/
+function asio_theme_suggestions_page_title_alter(array &$suggestions, array $variables, $hook) {
+	$node = \Drupal::request()->attributes->get('node');
+	if (!empty($node) && is_object($node)) {
+		$suggestions[] = $hook ."__". $node->getType();
+	}
+}	
+
 
 /*
 *
@@ -333,6 +346,20 @@ function asio_form_node_basic_cart_order_form_alter(&$form, \Drupal\Core\Form\Fo
 	$form['#attributes']['class'][] = "col-lg-8";
 }	
 
+
+
+/*
+*
+* Задание классов для формы подверждения заказа id=search-form
+*
+*/
+function asio_form_search_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+	//$form['edit-keys']['widget'][0]['value']['#prefix'] = "<div class='form-row'>";
+
+	$form['#prefix'] = "<div class='search-form mb-5'>";
+	$form['#suffix'] = "</div>";
+ //kint($form);
+}	
 
 /*
 *
