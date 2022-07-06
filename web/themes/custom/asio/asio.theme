@@ -370,7 +370,7 @@ function asio_form_search_form_alter(&$form, \Drupal\Core\Form\FormStateInterfac
 function asio_preprocess_views_view_field__field_link(&$variables) {
 	if($variables['field']->field == 'field_link'){
 		$arr = $variables['row']->_entity->get('field_link')->getValue();
-
+		kint($arr);
 		$media = Media::load($arr[0]['target_id']);
 		$type = $media->bundle->getValue();
 		if($type[0]['target_id'] == 'document'){
@@ -410,6 +410,7 @@ function asio_theme_suggestions_views_view_field_alter(array &$suggestions, arra
 function asio_preprocess_views_view_field__name(&$variables) {
 
 	$id = $variables['row']->_entity->tid->value;
+	$id_parent = $variables['row']->_entity->parent->target_id;
 	$id_name = $variables['row']->_entity->field_name_settings->target_id;
 	$id_value = $variables['row']->_entity->field_value->target_id;
 	$name = get_taxonomy_term_by_filter($id_name);
@@ -418,6 +419,7 @@ function asio_preprocess_views_view_field__name(&$variables) {
 	$variables['filter'][$id]['id'] = $id;
 	$variables['filter'][$id]['name'] = $name;
 	$variables['filter'][$id]['value'] = $value;
+	$variables['filter'][$id]['parent'] = $id_parent;
 
 } 
 

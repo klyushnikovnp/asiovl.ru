@@ -76,8 +76,46 @@
     }); 
     
     alert(values.join(', '));
+
   });
 
- 
- 
+   $("input.form-check-input").change(function(){
+	    $("div.catalog-list>div").removeClass("d-none");
+
+		let current_class="";
+
+		var pclass=$(this).attr("class").split(" ");
+		let pc=pclass.length>0?pclass.filter(t=>t.startsWith("parent")):"";
+		if(pc.length>0){
+			current_class=pc[0];
+			let selector="input."+current_class;
+			if($(this).prop("checked")){
+				$(selector).prop("disabled",true);
+				$(this).prop("disabled",false);
+			} else {
+				$(selector).prop("disabled",false);
+			}
+		}
+		
+
+
+	    //select all ids
+		let ids1=$("input.form-check-input:checked").map((index,item)=>{
+			return $(item).val();
+		}).get();
+
+		if(ids1.length>0){
+			$("div.catalog-list>div").each(function(index,item){
+				let div=$(item).find("div.id-settings");
+				let ids2=$(div).attr("data-id-settings").split(",");
+				let filteredarray=ids2.filter(t=>ids1.includes(t.trim()))
+				if(filteredarray.length>=ids1.length){
+					$(item).removeClass("d-none");
+				} else {
+					$(item).addClass("d-none");
+				}
+			});
+		}
+   });
+
 })(jQuery);
